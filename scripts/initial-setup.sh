@@ -69,7 +69,7 @@ log "building for esp32"
 export CMAKE_PREFIX_PATH="$PWD/.sdk/cmake:$CMAKE_PREFIX_PATH"
 west build \
     -b esp_wrover_kit/esp32/procpu \
-    zephyr/samples/hello_world/ || {
+    app || {
         fatal "failed to build sample"
 }
 
