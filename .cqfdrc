@@ -1,0 +1,9 @@
+[project]
+org='baby-formula'
+name='can-reader'
+
+[build]
+command='./scripts/initial-setup.sh'
+docker_run_args='--device /dev/ttyUSB0:/dev/ttyUSB0'
+
+# vi: ft=ini
