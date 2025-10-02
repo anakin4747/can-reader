@@ -1,0 +1,12 @@
+.cache/
+.cmake/
+.sdk/
+.west/
+build/
+esp-idf/
+hal_espressif/
+venv/
+zephyr/
+bootloader/
+modules/
+tools/
