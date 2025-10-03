@@ -1,33 +1,48 @@
-.. zephyr:code-sample:: hello_world
-   :name: Hello World
+.. zephyr:code-sample:: wifi-shell
+   :name: Wi-Fi shell
+   :relevant-api: net_stats
 
-   Print "Hello World" to the console.
+   Test Wi-Fi functionality using the Wi-Fi shell module.
 
 Overview
 ********
 
-A simple sample that can be used with any :ref:`supported board <boards>` and
-prints "Hello World" to the console.
+This sample allows testing Wi-Fi drivers for various boards by
+enabling the Wi-Fi shell module that provides a set of commands:
+scan, connect, and disconnect.  It also enables the net_shell module
+to verify net_if settings.
 
 Building and Running
 ********************
 
-This application can be built and executed on QEMU as follows:
+Verify the board and chip you are targeting provide Wi-Fi support.
+
+For instance you can use Nordic's nrf7002dk by selecting the nrf7002dk/nrf5340/cpuapp board.
 
 .. zephyr-app-commands::
-   :zephyr-app: samples/hello_world
-   :host-os: unix
-   :board: qemu_x86
-   :goals: run
+   :zephyr-app: samples/net/wifi/shell
+   :board: nrf7002dk/nrf5340/cpuapp
+   :goals: build
    :compact:
 
-To build for another board, change "qemu_x86" above to that board's name.
-
-Sample Output
-=============
+Sample console interaction
+==========================
 
 .. code-block:: console
 
-    Hello World! x86
+   shell> wifi scan
+   Scan requested
+   shell>
+   Num  | SSID                             (len) | Chan | RSSI | Sec
+   1    | kapoueh!                         8     | 1    | -93  | WPA/WPA2
+   2    | mooooooh                         8     | 6    | -89  | WPA/WPA2
+   3    | Ap-foo blob..                    13    | 11   | -73  | WPA/WPA2
+   4    | gksu                             4     | 1    | -26  | WPA/WPA2
+   ----------
+   Scan request done
 
-Exit QEMU by pressing :kbd:`CTRL+A` :kbd:`x`.
+   shell> wifi connect "gksu" 4 SecretStuff
+   Connection requested
+   shell>
+   Connected
+   shell>
